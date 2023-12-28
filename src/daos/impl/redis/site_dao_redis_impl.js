@@ -99,12 +99,11 @@ const findAll = async () => {
   const client = redis.getClient();
   
   const siteIds = await client.smembersAsync(keyGenerator.getSiteIDsKey())
-
-  let sites = []
+  const sites = []
 
   for(const id of siteIds) {
     const siteHash = await client.hgetallAsync(id);
-    sites = sites.concat(remap(siteHash))
+    if(siteHash) sites.push(remap(siteHash))
   }
 
   return sites;
