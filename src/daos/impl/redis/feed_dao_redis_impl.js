@@ -149,7 +149,7 @@ const getRecent = async (key, limit) => {
  * @param {number} limit - the maximum number of readings to return.
  * @returns {Promise} - Promise that resolves to an array of meter reading objects.
  */
-const getRecentGlobal = async limit => getRecent(
+const getRecentGlobal = async (limit) => getRecent(
   keyGenerator.getGlobalFeedKey(),
   limit,
 );

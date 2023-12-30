@@ -20,5 +20,5 @@ module.exports = {
    * @param {Object} meterReading - a meter reading object.
    * @returns {Promise} - promise that resolves when the operation is complete.
    */
-  update: async meterReading => impl.update(meterReading),
+  update: async (meterReading) => impl.update(meterReading),
 };

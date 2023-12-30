@@ -14,7 +14,7 @@ const maxTempC = 30;
  *  achieve in one minute.
  * @private
  */
-const getMaxMinuteWHGenerated = capacity => capacity * 1000 / 24 / 60;
+const getMaxMinuteWHGenerated = (capacity) => ((capacity * 1000) / 24) / 60;
 
 /**
  * Get the initial watt hours used figure for the first minute,
@@ -24,7 +24,7 @@ const getMaxMinuteWHGenerated = capacity => capacity * 1000 / 24 / 60;
  * @returns {number} - the initial minute watt hour used figure to use.
  * @private
  */
-const getInitialMinuteWHUsed = maxCapacity => (
+const getInitialMinuteWHUsed = (maxCapacity) => (
   Math.random() > 0.5 ? maxCapacity + 0.1 : maxCapacity - 0.1
 );
 
@@ -57,7 +57,7 @@ const getNextValueInSeries = (current, max) => {
  * @returns {number} - the next value.
  * @private
  */
-const getNextValue = max => getNextValueInSeries(max, max);
+const getNextValue = (max) => getNextValueInSeries(max, max);
 
 /**
  * Generates historical sample data for each site in the 'sites' array.

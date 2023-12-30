@@ -59,17 +59,17 @@ const updateOptimized = async (meterReading) => {
   await compareAndUpdateScript.load();
 
   // START Challenge #3
-  const transaction = client.multi()
+  const transaction = client.multi();
 
-  transaction.hset(key, 'lastReportingTime', timeUtils.getCurrentTimestamp())
-  transaction.hincrby(key, 'meterReadingCount', 1)
-  transaction.expire(key, weekSeconds)
+  transaction.hset(key, 'lastReportingTime', timeUtils.getCurrentTimestamp());
+  transaction.hincrby(key, 'meterReadingCount', 1);
+  transaction.expire(key, weekSeconds);
 
-  transaction.evalsha(compareAndUpdateScript.updateIfGreater(key, 'maxWhGenerated', meterReading.whGenerated))
-  transaction.evalsha(compareAndUpdateScript.updateIfLess(key, 'minWhGenerated', meterReading.whGenerated))
-  transaction.evalsha(compareAndUpdateScript.updateIfGreater(key, 'maxCapacity', meterReading.whGenerated - meterReading.whUsed))
+  transaction.evalsha(compareAndUpdateScript.updateIfGreater(key, 'maxWhGenerated', meterReading.whGenerated));
+  transaction.evalsha(compareAndUpdateScript.updateIfLess(key, 'minWhGenerated', meterReading.whGenerated));
+  transaction.evalsha(compareAndUpdateScript.updateIfGreater(key, 'maxCapacity', meterReading.whGenerated - meterReading.whUsed));
 
-  await transaction.exec()
+  await transaction.exec();
   // END Challenge #3
 };
 /* eslint-enable */

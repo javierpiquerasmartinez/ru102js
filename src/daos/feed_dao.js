@@ -8,14 +8,14 @@ module.exports = {
    * @param {Object} meterReading - a meter reading.
    * @returns {Promise} - Promise, resolves on completion.
    */
-  insert: async meterReadings => impl.insert(meterReadings),
+  insert: async (meterReadings) => impl.insert(meterReadings),
 
   /**
    * Get recent meter readings for all sites.
    * @param {number} limit - the maximum number of readings to return.
    * @returns {Promise} - Promise that resolves to an array of meter reading objects.
    */
-  getRecentGlobal: async limit => impl.getRecentGlobal(limit),
+  getRecentGlobal: async (limit) => impl.getRecentGlobal(limit),
 
   /**
    * Get recent meter readings for a specific solar sites.

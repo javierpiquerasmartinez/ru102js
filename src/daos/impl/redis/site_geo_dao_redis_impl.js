@@ -114,17 +114,17 @@ const findAll = async () => {
   const siteIds = await client.zrangeAsync(keyGenerator.getSiteGeoKey(), 0, -1);
   const sites = [];
 
-  const pipeline = client.batch()
+  const pipeline = client.batch();
 
   for (const siteId of siteIds) {
     const siteKey = keyGenerator.getSiteHashKey(siteId);
 
-    pipeline.hgetallAsync(siteKey)
+    pipeline.hgetallAsync(siteKey);
   }
 
-  const sitesHash = await pipeline.execAsync()
+  const sitesHash = await pipeline.execAsync();
 
-  for(const site of sitesHash) {
+  for (const site of sitesHash) {
     if (site) {
       // Call remap to remap the flat key/value representation
       // from the Redis hash into the site domain object format.
@@ -208,14 +208,14 @@ const findByGeoWithExcessCapacity = async (lat, lng, radius, radiusUnit) => {
 
   // START Challenge #5
   setOperationsPipeline.zinterstoreAsync(
-    sitesInRadiusCapacitySortedSetKey, 
-    2, 
-    sitesInRadiusSortedSetKey, 
-    keyGenerator.getCapacityRankingKey(), 
-    'WEIGHTS', 
-    0, 
-    1
-  )
+    sitesInRadiusCapacitySortedSetKey,
+    2,
+    sitesInRadiusSortedSetKey,
+    keyGenerator.getCapacityRankingKey(),
+    'WEIGHTS',
+    0,
+    1,
+  );
   // END Challenge #5
 
   // Expire the temporary sorted sets after 30 seconds, so that we

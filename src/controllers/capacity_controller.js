@@ -10,7 +10,7 @@ const capacityDao = require('../daos/capacity_dao');
  *  keys, one for the sites with highest capacity and one for the sites with
  *  lowest.  Each array contains report entry objects.
  */
-const getCapacityReport = async limit => capacityDao.getReport(limit);
+const getCapacityReport = async (limit) => capacityDao.getReport(limit);
 
 module.exports = {
   getCapacityReport,

@@ -124,7 +124,6 @@ test(`${testSuiteName}: update`, async () => {
   expect(lastReportingTime).toBeLessThanOrEqual(after);
 });
 
-
 test(`${testSuiteName}: findById`, async () => {
   // Create some data.
   const meterReading = {

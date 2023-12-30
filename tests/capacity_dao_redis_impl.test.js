@@ -83,7 +83,7 @@ test(`${testSuiteName}: getReport`, async () => {
 
   await Promise.all(
     entries.map(
-      site => client.zaddAsync(
+      (site) => client.zaddAsync(
         keyGenerator.getCapacityRankingKey(),
         site.score,
         site.id,
@@ -145,7 +145,7 @@ test(`${testSuiteName}: getRank`, async () => {
 
   await Promise.all(
     entries.map(
-      site => client.zaddAsync(
+      (site) => client.zaddAsync(
         keyGenerator.getCapacityRankingKey(),
         site.score,
         site.id,

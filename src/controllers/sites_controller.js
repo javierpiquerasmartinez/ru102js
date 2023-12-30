@@ -6,7 +6,7 @@ const siteDao = require('../daos/site_dao');
  * @param {Object} site - a site object.
  * @returns {Promise} - a Promise that resolves when the operation is complete.
  */
-const createSite = async site => siteDao.insert(site);
+const createSite = async (site) => siteDao.insert(site);
 
 /**
  * Retrieve all sites from the database.
@@ -21,7 +21,7 @@ const getSites = async () => siteDao.findAll();
  * @param {number} siteId - the numeric ID of the site to retrieve.
  * @returns {Promise} - a Promise that resolves to a site object.
  */
-const getSite = async siteId => siteDao.findById(siteId);
+const getSite = async (siteId) => siteDao.findById(siteId);
 
 /**
  * Retrieve sites that are within a specified distance of a coordinate,

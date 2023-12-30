@@ -9,7 +9,7 @@ module.exports = {
    * @param {Object} meterReading - the meter reading to insert.
    * @returns {Promise} - Promise that resolves when the operation is completed.
    */
-  insert: async meterReading => impl.insert(meterReading),
+  insert: async (meterReading) => impl.insert(meterReading),
 
   /**
    * Get recent metrics for a specific solar site on a given date with

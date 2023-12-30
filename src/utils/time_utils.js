@@ -35,7 +35,7 @@ const getTimestampForMinuteOfDay = (timestamp, minute) => {
  * @param {number} timestamp - a UNIX timestamp in seconds.
  * @returns {string} - the YYYY-MM-DD string for the supplied timestamp.
  */
-const getDateString = timestamp => moment.unix(timestamp).utc().format('YYYY-MM-DD');
+const getDateString = (timestamp) => moment.unix(timestamp).utc().format('YYYY-MM-DD');
 
 /**
  * Returns the current UNIX timestamp in seconds.

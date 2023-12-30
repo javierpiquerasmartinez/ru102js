@@ -29,7 +29,7 @@ const createMeterReadings = async (meterReadings) => {
  * @param {number} limit - the maximum number of entries to retrieve from the feed.
  * @returns {Promise} - promise that resolves to an array of feed entries.
  */
-const getMeterReadings = async limit => feedDao.getRecentGlobal(limit);
+const getMeterReadings = async (limit) => feedDao.getRecentGlobal(limit);
 
 /**
  * Retrieve entries from an individual site's meter reading feed, up to the

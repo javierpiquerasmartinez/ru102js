@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { param, query } = require('express-validator');
 const apiErrorReporter = require('../utils/apierrorreporter');
-const controller = require('../controllers/sites_controller.js');
+const controller = require('../controllers/sites_controller');
 
 /**
  * Custom validate.js validator.  Validates a set of parameters to
