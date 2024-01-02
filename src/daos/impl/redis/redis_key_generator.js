@@ -84,6 +84,23 @@ const getRateLimiterKey = (name, interval, maxHits) => {
 };
 
 /**
+ * Takes a name, interval and maximum number of hits allowed in that interval,
+ * returns the Redis key used to store the rate limiter data for those parameters
+ * with the sliding window algorithm.
+ *
+ * Key name: prefix:limiter:[name]:[interval]:[maxHits]
+ * Redis type stored at this key: string (containing a number)
+ *
+ * @param {number} windowSize - the time period that the rate limiter applies for (mins).
+ * @param {string} name - the unique name of the resource.
+ * @param {number} maxHits - the maximum number of hits on the resource
+ *  allowed in the interval.
+ * @returns {string} - the Redis key used to store the rate limiter data for the
+ *  given parameters.
+ */
+const getSlidingWindowRateLimiterKey = (windowSize, name, maxHits) => getKey(`limiter:${windowSize}:${name}:${maxHits}`);
+
+/**
  * Returns the Redis key used to store geo information for sites.
  *
  * Key name: prefix:sites:geo
@@ -176,6 +193,7 @@ module.exports = {
   getSiteIDsKey,
   getSiteStatsKey,
   getRateLimiterKey,
+  getSlidingWindowRateLimiterKey,
   getSiteGeoKey,
   getCapacityRankingKey,
   getTSKey,
