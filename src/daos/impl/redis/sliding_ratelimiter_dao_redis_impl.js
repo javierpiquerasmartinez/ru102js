@@ -12,16 +12,23 @@ const hitSlidingWindow = async (name, opts) => {
 
   // START Challenge #7
   const transaction = client.multi();
+
+  const now = timeUtils.getCurrentTimestampMillis();
   const key = keyGenerator.getSlidingWindowRateLimiterKey(opts.interval, name, opts.maxHits);
-  transaction.zaddAsync(
+
+  transaction.zadd(
     key,
-    timeUtils.getCurrentTimestampMillis(),
-    `${timeUtils.getCurrentTimestampMillis()}-${name}`,
+    now,
+    `${now}-${Math.random()}`,
   );
-  transaction.zremrangebyscoreAsync(key, '-inf', timeUtils.getCurrentTimestampMillis() - opts.interval);
-  transaction.zcardAsync(key);
+  transaction.zremrangebyscore(key, 0, now - opts.interval);
+  transaction.zcard(key);
+
   const result = await transaction.execAsync();
-  return opts.maxHits - result[2] >= 0 ? opts.maxHits - result[2] : -1;
+
+  const hits = parseInt(result[2], 10);
+
+  return hits > opts.maxHits ? -1 : opts.maxHits - hits;
   // END Challenge #7
 };
 
